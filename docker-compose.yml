@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+    web:
+        build: .
+        ports:
+            - "5000:5000"
+        volumes:
+            - .:/code
+        depends_on:
+            - data_loader
+
+    data_loader:
+        build: ./dataloader
+        depends_on:
+            - redis
+    redis:
+        image: redis
